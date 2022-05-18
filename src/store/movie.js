@@ -20,8 +20,10 @@ export default {
     async getMovies({ commit }, query) {
       const { title } = query
 
-      const { data } = await axios.get(`api/movie?search=${title}`)
-      commit('setMovies', data.Search)
+      const data = await axios.get(`api/movie?search=${title}`)
+      console.log(data)
+
+      // commit('setMovies', data.Search)
     },
     async getMovie({ commit }, payload) {
       const { id } = payload

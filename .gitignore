@@ -4,6 +4,3 @@
 **/.vscode/
 **/.DS_Store/
 **/.cache/
-.vercel
-.env
-api

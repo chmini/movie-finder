@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import MovieDetail from './MovieDetail'
 import NotFound from './NotFound'
-import Search from './Search'
+import SearchResult from './SearchResult'
 
 export default createRouter({
   history: createWebHistory(),
@@ -17,7 +17,7 @@ export default createRouter({
     {
       path: '/search',
       name: 'search',
-      component: Search
+      component: SearchResult
     },
     {
       path: '/movie/:id',

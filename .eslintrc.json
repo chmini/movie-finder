@@ -12,8 +12,7 @@
     "vue/html-closing-bracket-newline": [
       "error",
       {
-        "singleline": "never",
-        "multiline": "never"
+        "singleline": "never"
       }
     ],
     "vue/html-self-closing": [

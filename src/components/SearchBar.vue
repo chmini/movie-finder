@@ -1,7 +1,6 @@
 <template>
-  <h1>search movie with title</h1>
   <form @submit.prevent="onSubmit">
-    <input ref="searchInput" type="search" :value="$route.query.title" />
+    <input ref="searchInput" class="el_searchBar" type="text" :value="$route.query.title" placeholder="Search movie" />
   </form>
 </template>
 
@@ -12,7 +11,6 @@ export default {
       this.$router.push({
         path: '/search',
         query: {
-          // TODO: 3글자 이상 처리 필요
           title: this.$refs.searchInput.value.trim()
         }
       })
@@ -20,3 +18,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.el_searchBar {
+  width: 100%;
+  box-sizing: border-box;
+  height: 52px;
+  padding: 0 40px;
+  font-size: 1.2rem;
+  border: 2px solid rgba($color-border, 0.8);
+  border-radius: 13px;
+  outline: none;
+  color: $color-font;
+}
+</style>

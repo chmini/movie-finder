@@ -20,13 +20,13 @@ export default {
     async getMovies({ commit }, query) {
       const { title } = query
 
-      const { data } = await axios.get(`https://www.omdbapi.com?apikey=7035c60c&s=${title}`)
+      const { data } = await axios.get(`/api/movie?search=${title}`)
       commit('setMovies', data.Search)
     },
     async getMovie({ commit }, payload) {
       const { id } = payload
 
-      const { data } = await axios.get(`https://www.omdbapi.com?apikey=7035c60c&i=${id}`)
+      const { data } = await axios.get(`/api/movie/${id}`)
       commit('setCurrentMovie', data)
     }
   }

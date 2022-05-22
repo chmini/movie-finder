@@ -1,6 +1,4 @@
-import axios from 'axios'
-
-const API_END_POINT = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
+import axios from '~/utils/axios'
 
 export default {
   namespaced: true,
@@ -19,16 +17,12 @@ export default {
     }
   },
   actions: {
-    async getMovies({ commit }, query) {
-      const { title } = query
-
-      const { data } = await axios.get(`${API_END_POINT}/api/movie?search=${title}`)
+    async getMovies({ commit }, options) {
+      const { data } = await axios.get('/api/movie', { ...options })
       commit('setMovies', data.Search)
     },
-    async getMovie({ commit }, payload) {
-      const { id } = payload
-
-      const { data } = await axios.get(`${API_END_POINT}/api/movie/${id}`)
+    async getCurrentMovie({ commit }, options) {
+      const { data } = await axios.get('/api/movie', { ...options })
       commit('setCurrentMovie', data)
     }
   }

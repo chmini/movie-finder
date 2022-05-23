@@ -1,5 +1,5 @@
 <template>
-  <ul ref="movieList">
+  <ul>
     <SearchResultItem v-for="movie in movies" :key="movie.imdbID" :movie="movie" />
   </ul>
 </template>
@@ -21,11 +21,13 @@ export default {
   },
   watch: {
     query() {
-      this.$store.dispatch('movie/getMovies', this.query)
+      if (this.$route.path !== '/') return
+      this.$store.dispatch('movie/getMovies', { ...this.query })
     }
   },
   created() {
-    this.$store.dispatch('movie/getMovies', this.query)
+    if (Object.keys(this.query).length === 0) return
+    this.$store.dispatch('movie/getMovies', { ...this.query })
   }
 }
 </script>

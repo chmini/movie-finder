@@ -9,9 +9,9 @@ export default {
   methods: {
     onSubmit() {
       this.$router.push({
-        path: '/search',
+        path: '/',
         query: {
-          title: this.$refs.searchInput.value.trim()
+          search: this.$refs.searchInput.value.trim()
         }
       })
     }

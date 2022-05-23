@@ -17,12 +17,14 @@ export default {
     }
   },
   actions: {
-    async getMovies({ commit }, options) {
-      const { data } = await axios.get('/api/movie', { ...options })
+    async getMovies({ commit }, payload) {
+      const { data } = await axios.get('/api/movie', { params: payload })
       commit('setMovies', data.Search)
     },
-    async getCurrentMovie({ commit }, options) {
-      const { data } = await axios.get('/api/movie', { ...options })
+    async getCurrentMovie({ commit }, payload) {
+      const { id } = payload
+
+      const { data } = await axios.get(`/api/movie/${id}`)
       commit('setCurrentMovie', data)
     }
   }

@@ -44,11 +44,15 @@ export default {
   },
   watch: {
     $route() {
-      this.$store.dispatch('movie/getMovie', this.$route.params)
+      if (this.$route.path.indexOf('/movie') !== 0) {
+        this.$store.commit('movie/setCurrentMovie', {})
+        return
+      }
+      this.$store.dispatch('movie/getCurrentMovie', { ...this.$route.params })
     }
   },
   created() {
-    this.$store.dispatch('movie/getMovie', this.$route.params)
+    this.$store.dispatch('movie/getCurrentMovie', { ...this.$route.params })
   }
 }
 </script>

@@ -21,7 +21,7 @@ export default {
   },
   watch: {
     query() {
-      if (this.$route.path !== '/') return
+      if (this.$route.fullPath === '/') return
       this.$store.dispatch('movie/getMovies', { ...this.query })
     }
   },

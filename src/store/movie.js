@@ -19,13 +19,13 @@ export default {
   actions: {
     async getMovies({ commit }, payload) {
       const { data } = await axios.get('/api/movie', { params: payload })
-      commit('setMovies', data.Search)
+      if (data) commit('setMovies', data.Search)
     },
     async getCurrentMovie({ commit }, payload) {
       const { id } = payload
 
       const { data } = await axios.get(`/api/movie/${id}`)
-      commit('setCurrentMovie', data)
+      if (data) commit('setCurrentMovie', data)
     }
   }
 }

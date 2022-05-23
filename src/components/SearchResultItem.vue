@@ -2,8 +2,7 @@
   <RouterLink :to="{ name: 'movieDetail', params: { id: movie.imdbID } }">
     <li ref="card" :key="movie.imdbID" class="bl_card">
       <div class="bl_card_header">
-        <div v-if="movie.Poster === 'N/A'" class="el_imgNone">No Image</div>
-        <img v-else :src="movie.Poster" :alt="`${movie.Title} poster`" />
+        <Image :title="movie.Title" :poster="movie.Poster" />
       </div>
       <div class="bl_card_cont">
         <div>{{ movie.Year }} | {{ movie.Type }}</div>
@@ -14,7 +13,10 @@
 </template>
 
 <script>
+import Image from '~/components/Image'
+
 export default {
+  components: { Image },
   props: {
     movie: {
       type: Object,
@@ -40,10 +42,6 @@ export default {
 
   &_header {
     overflow: hidden;
-    img {
-      width: 100%;
-      border-radius: 13px;
-    }
   }
 
   &_cont {
@@ -62,17 +60,5 @@ export default {
   &:hover {
     transform: scale(1.05);
   }
-}
-
-.el_imgNone {
-  height: 450px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 13px;
-  background-color: #999;
-  color: #666;
-  font-size: 30px;
-  font-weight: 700;
 }
 </style>

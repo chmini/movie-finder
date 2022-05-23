@@ -10,11 +10,6 @@ app.get('/api/movie', async (req, res) => {
     query: { search }
   } = req
 
-  if (!search) {
-    res.status(400).send('search is required')
-    return
-  }
-
   const { data } = await axios.get(`${API_END_POINT}/?apikey=${process.env.API_KEY}&s=${search}`)
 
   if (data.Response === 'False') {

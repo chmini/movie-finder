@@ -1,7 +1,7 @@
 <template>
   <div :key="$route.params.id" class="bl_media">
     <div ref="mediaImg" class="bl_media_img">
-      <img :src="poster" :alt="currentMovie.Title" />
+      <Image :title="currentMovie.Title" :poster="poster" />
     </div>
     <div class="bl_media_cont">
       <div class="bl_media_title">{{ currentMovie.Title }}</div>
@@ -33,9 +33,14 @@
 </template>
 
 <script>
+import Image from '~/components/Image'
+
 import { mapState } from 'vuex'
 
 export default {
+  components: {
+    Image
+  },
   computed: {
     ...mapState('movie', ['currentMovie']),
     poster() {
@@ -65,11 +70,9 @@ export default {
   font-size: 24px;
 
   &_img {
-    img {
-      max-width: 500px;
-      width: 45vw;
-      border-radius: 13px;
-    }
+    flex-shrink: 0;
+    width: 45vw;
+    max-width: 500px;
   }
 
   &_title {
@@ -81,10 +84,7 @@ export default {
   @media (max-width: 768px) {
     flex-direction: column;
     &_img {
-      img {
-        max-width: 100%;
-        width: 100%;
-      }
+      min-width: 100%;
     }
   }
 }

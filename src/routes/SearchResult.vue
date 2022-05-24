@@ -15,19 +15,14 @@ export default {
   },
   computed: {
     ...mapState('movie', ['movies']),
-    query() {
-      return this.$route.query
-    }
   },
   watch: {
-    query() {
-      if (this.$route.fullPath === '/') return
-      this.$store.dispatch('movie/getMovies', { ...this.query })
+    $route() {
+      this.$store.dispatch('movie/getMovies', { ...this.$route.query })
     }
   },
   created() {
-    if (Object.keys(this.query).length === 0) return
-    this.$store.dispatch('movie/getMovies', { ...this.query })
+    this.$store.dispatch('movie/getMovies', { ...this.$route.query })
   }
 }
 </script>

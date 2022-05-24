@@ -18,6 +18,8 @@ export default {
   },
   actions: {
     async getMovies({ commit }, payload) {
+      if (Object.keys(payload).length === 0) return
+
       const { data } = await axios.get('/api/movie', { params: payload })
       if (data) commit('setMovies', data.Search)
     },
